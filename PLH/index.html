@@ -1,0 +1,1635 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Play Like Her Merch</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg-light:#c9bae8;
+      --bg-lighter:#d8cbf1;
+      --purple:#432586;
+      --purple-dark:#381d74;
+      --purple-mid:#5d3aa8;
+      --yellow:#e8c95f;
+      --cream:#eee7db;
+      --white:#ffffff;
+      --text:#2e2148;
+      --muted:#6b5a8e;
+      --shadow:0 10px 30px rgba(50, 30, 95, 0.14);
+      --radius:22px;
+    }
+
+
+    *{
+      box-sizing:border-box;
+    }
+
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+
+    body{
+      margin:0;
+      font-family:'Poppins',sans-serif;
+      color:var(--text);
+      background:var(--bg-light);
+    }
+
+
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
+
+
+    button, select, input{
+      font-family:'Poppins',sans-serif;
+    }
+
+
+    img{
+      display:block;
+      max-width:100%;
+    }
+
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:50;
+      background:rgba(216,203,241,0.92);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid rgba(67,37,134,0.12);
+    }
+
+
+    .nav{
+      max-width:1280px;
+      margin:0 auto;
+      padding:16px 24px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+    }
+
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      min-width:0;
+    }
+
+
+    .brand-logo{
+      width:54px;
+      height:54px;
+      border-radius:50%;
+      background:
+        radial-gradient(circle at 50% 50%, #d9cfef 0 36px, transparent 36px),
+        conic-gradient(from 0deg, transparent 0 77%, var(--purple) 77% 100%);
+      border:6px solid var(--purple-mid);
+      position:relative;
+      overflow:hidden;
+      flex:0 0 auto;
+    }
+
+
+    .brand-logo::before,
+    .brand-logo::after{
+      content:"";
+      position:absolute;
+      bottom:10px;
+      width:18px;
+      border-radius:16px 16px 8px 8px;
+    }
+
+
+    .brand-logo::before{
+      left:8px;
+      height:28px;
+      background:var(--yellow);
+      box-shadow:17px 0 0 #b7a8d8, 34px 0 0 #6a58a6;
+    }
+
+
+    .brand-text{
+      min-width:0;
+    }
+
+
+    .brand-text h1{
+      font-size:20px;
+      line-height:1;
+      margin:0 0 4px;
+      color:var(--purple);
+      font-weight:800;
+    }
+
+
+    .brand-text p{
+      margin:0;
+      color:var(--muted);
+      font-size:12px;
+    }
+
+
+    .nav-links{
+      display:flex;
+      gap:18px;
+      align-items:center;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+
+
+    .nav-links a{
+      color:var(--purple);
+      font-weight:600;
+      font-size:14px;
+    }
+
+
+    .cart-button{
+      border:none;
+      background:var(--purple);
+      color:var(--white);
+      padding:12px 18px;
+      border-radius:999px;
+      font-weight:700;
+      cursor:pointer;
+      box-shadow:var(--shadow);
+    }
+
+
+    .hero{
+      max-width:1280px;
+      margin:0 auto;
+      padding:42px 24px 26px;
+      display:grid;
+      grid-template-columns:1.05fr 0.95fr;
+      gap:30px;
+      align-items:center;
+    }
+
+
+    .hero-copy h2{
+      margin:0 0 14px;
+      color:var(--purple);
+      font-size:clamp(38px,5vw,72px);
+      line-height:0.98;
+      font-weight:800;
+    }
+
+
+    .hero-copy p{
+      margin:0 0 16px;
+      font-size:18px;
+      line-height:1.7;
+      max-width:760px;
+    }
+
+
+    .hero-badges{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin:22px 0 0;
+    }
+
+
+    .badge{
+      background:rgba(255,255,255,0.68);
+      color:var(--purple);
+      padding:10px 14px;
+      border-radius:999px;
+      font-size:13px;
+      font-weight:700;
+      border:1px solid rgba(67,37,134,0.12);
+    }
+
+
+    .hero-actions{
+      margin-top:24px;
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+
+
+    .btn{
+      border:none;
+      border-radius:999px;
+      padding:14px 22px;
+      font-weight:700;
+      cursor:pointer;
+      transition:transform .15s ease, opacity .15s ease;
+    }
+
+
+    .btn:hover{
+      transform:translateY(-1px);
+      opacity:.96;
+    }
+
+
+    .btn-primary{
+      background:var(--purple);
+      color:#fff;
+    }
+
+
+    .btn-secondary{
+      background:#fff;
+      color:var(--purple);
+      border:2px solid var(--purple);
+    }
+
+
+    .hero-collage{
+      background:var(--purple);
+      border-radius:28px;
+      padding:22px;
+      box-shadow:var(--shadow);
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+      min-height:520px;
+    }
+
+
+    .collage-card{
+      background:linear-gradient(180deg,#efe8fb,#d9cbf1);
+      border-radius:22px;
+      position:relative;
+      overflow:hidden;
+      min-height:200px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:10px;
+    }
+
+
+    .collage-card.tall{
+      grid-row:span 2;
+      min-height:420px;
+      background:linear-gradient(180deg,#f1eaff,#cebfea);
+    }
+
+
+    .collage-card img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      border-radius:16px;
+    }
+
+
+    .collage-card .label{
+      position:absolute;
+      left:16px;
+      bottom:14px;
+      background:rgba(67,37,134,0.92);
+      color:#fff;
+      border-radius:999px;
+      padding:8px 12px;
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:.2px;
+    }
+
+
+    .section{
+      max-width:1280px;
+      margin:0 auto;
+      padding:26px 24px 34px;
+    }
+
+
+    .section-title{
+      color:var(--purple);
+      font-size:clamp(32px,4vw,56px);
+      margin:0 0 8px;
+      line-height:1.02;
+      font-weight:800;
+    }
+
+
+    .section-sub{
+      margin:0 0 26px;
+      font-size:17px;
+      line-height:1.7;
+      max-width:900px;
+    }
+
+
+    .section-sub strong{
+      color:var(--purple);
+    }
+
+
+    .products-grid{
+      display:grid;
+      grid-template-columns:repeat(5, minmax(0,1fr));
+      gap:22px;
+    }
+
+
+    .product-card{
+      background:#fff;
+      border-radius:26px;
+      padding:18px;
+      box-shadow:var(--shadow);
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+    }
+
+
+    .product-image{
+      border-radius:20px;
+      background:linear-gradient(180deg,#f3eeff 0%, #ddd0f2 100%);
+      min-height:260px;
+      position:relative;
+      overflow:hidden;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:14px;
+    }
+
+
+    .product-image img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      display:block;
+    }
+
+
+    .product-info h3{
+      margin:0 0 4px;
+      color:var(--purple);
+      font-size:24px;
+      font-weight:800;
+    }
+
+
+    .price{
+      color:var(--purple-mid);
+      font-size:20px;
+      font-weight:700;
+      margin-bottom:8px;
+    }
+
+
+    .product-info p{
+      margin:0;
+      font-size:14px;
+      line-height:1.6;
+      color:#504267;
+      min-height:68px;
+    }
+
+
+    .field{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      margin-top:6px;
+    }
+
+
+    .field label{
+      font-size:13px;
+      font-weight:700;
+      color:var(--purple);
+    }
+
+
+    .field select{
+      border:2px solid rgba(67,37,134,0.14);
+      background:#f9f6ff;
+      border-radius:14px;
+      padding:10px 12px;
+      color:var(--purple);
+      font-size:14px;
+      outline:none;
+    }
+
+
+    .actions{
+      margin-top:auto;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+    }
+
+
+    .action-btn{
+      border:none;
+      border-radius:14px;
+      padding:12px 12px;
+      font-size:14px;
+      font-weight:700;
+      cursor:pointer;
+    }
+
+
+    .action-btn.cart{
+      background:var(--purple);
+      color:#fff;
+    }
+
+
+    .action-btn.buy{
+      background:#f4edff;
+      color:var(--purple);
+      border:2px solid rgba(67,37,134,0.18);
+    }
+
+
+    .highlight-band{
+      background:var(--purple);
+      color:#fff;
+      padding:34px 24px;
+      margin:38px 0 0;
+    }
+
+
+    .highlight-inner{
+      max-width:1280px;
+      margin:0 auto;
+      display:grid;
+      grid-template-columns:1.2fr 0.8fr;
+      gap:20px;
+      align-items:center;
+    }
+
+
+    .highlight-inner h3{
+      margin:0;
+      font-size:clamp(30px,4vw,64px);
+      line-height:1.08;
+      font-weight:300;
+    }
+
+
+    .highlight-inner h3 strong{
+      font-style:italic;
+      font-weight:800;
+    }
+
+
+    .partners{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      justify-self:end;
+      text-align:right;
+    }
+
+
+    .partners p{
+      margin:0;
+      font-size:14px;
+      opacity:.9;
+    }
+
+
+    .partner-list{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      font-weight:700;
+    }
+
+
+    .reviews-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:22px;
+      margin-top:18px;
+    }
+
+
+    .review{
+      background:#fff;
+      border-radius:24px;
+      padding:22px;
+      box-shadow:var(--shadow);
+    }
+
+
+    .stars{
+      color:var(--yellow);
+      font-size:22px;
+      letter-spacing:2px;
+      margin-bottom:10px;
+    }
+
+
+    .review p{
+      margin:0 0 12px;
+      line-height:1.7;
+      font-size:15px;
+    }
+
+
+    .review strong{
+      color:var(--purple);
+      font-size:14px;
+    }
+
+
+    .footer-contact{
+      background:
+        linear-gradient(rgba(255,255,255,.88), rgba(255,255,255,.88)),
+        radial-gradient(circle at 12% 30%, rgba(232,201,95,.35) 0 18px, transparent 19px),
+        radial-gradient(circle at 36% 64%, rgba(93,58,168,.22) 0 24px, transparent 25px),
+        radial-gradient(circle at 68% 26%, rgba(67,37,134,.18) 0 20px, transparent 21px),
+        radial-gradient(circle at 85% 68%, rgba(232,201,95,.25) 0 18px, transparent 19px);
+      border-top:1px solid rgba(67,37,134,0.1);
+    }
+
+
+    .footer-inner{
+      max-width:1280px;
+      margin:0 auto;
+      padding:34px 24px 50px;
+      display:grid;
+      grid-template-columns:1fr 0.9fr;
+      gap:24px;
+      align-items:center;
+    }
+
+
+    .footer-logo-wrap{
+      display:flex;
+      align-items:center;
+      gap:24px;
+      min-height:260px;
+    }
+
+
+    .footer-range{
+      width:100%;
+      max-width:560px;
+      border-radius:28px;
+      box-shadow:var(--shadow);
+      background:#efe8fb;
+      padding:14px;
+    }
+
+
+    .footer-range img{
+      width:100%;
+      border-radius:20px;
+      object-fit:cover;
+    }
+
+
+    .footer-card{
+      background:var(--cream);
+      border-radius:30px;
+      padding:28px;
+      box-shadow:var(--shadow);
+      display:grid;
+      grid-template-columns:1fr 190px;
+      gap:18px;
+      align-items:center;
+    }
+
+
+    .footer-card h3{
+      margin:0 0 12px;
+      font-size:28px;
+      color:#393939;
+    }
+
+
+    .footer-card p{
+      margin:6px 0;
+      font-size:16px;
+      color:#444;
+      line-height:1.5;
+    }
+
+
+    .qr{
+      width:170px;
+      height:170px;
+      border-radius:18px;
+      background:
+        linear-gradient(45deg,#ffb980,#ff8ea2);
+      position:relative;
+      display:grid;
+      place-items:center;
+      justify-self:end;
+      overflow:hidden;
+    }
+
+
+    .qr::before{
+      content:"";
+      position:absolute;
+      inset:12px;
+      background:
+        radial-gradient(circle, transparent 46%, rgba(255,255,255,.95) 47% 50%, transparent 51%),
+        linear-gradient(90deg, rgba(255,255,255,.88) 10%, transparent 10% 20%, rgba(255,255,255,.88) 20% 30%, transparent 30% 40%, rgba(255,255,255,.88) 40% 50%, transparent 50% 60%, rgba(255,255,255,.88) 60% 70%, transparent 70% 80%, rgba(255,255,255,.88) 80% 90%, transparent 90%),
+        linear-gradient(rgba(255,255,255,.88) 10%, transparent 10% 20%, rgba(255,255,255,.88) 20% 30%, transparent 30% 40%, rgba(255,255,255,.88) 40% 50%, transparent 50% 60%, rgba(255,255,255,.88) 60% 70%, transparent 70% 80%, rgba(255,255,255,.88) 80% 90%, transparent 90%);
+      border-radius:14px;
+      opacity:.55;
+    }
+
+
+    .qr .insta{
+      position:relative;
+      width:56px;
+      height:56px;
+      border:5px solid #fff4ee;
+      border-radius:16px;
+    }
+
+
+    .qr .insta::before{
+      content:"";
+      position:absolute;
+      width:20px;
+      height:20px;
+      border:5px solid #fff4ee;
+      border-radius:50%;
+      left:50%;
+      top:50%;
+      transform:translate(-50%,-50%);
+    }
+
+
+    .qr .insta::after{
+      content:"";
+      position:absolute;
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:#fff4ee;
+      right:8px;
+      top:8px;
+    }
+
+
+    .cart-overlay{
+      position:fixed;
+      inset:0;
+      background:rgba(20,10,40,0.34);
+      z-index:99;
+      opacity:0;
+      pointer-events:none;
+      transition:opacity .2s ease;
+    }
+
+
+    .cart-overlay.active{
+      opacity:1;
+      pointer-events:auto;
+    }
+
+
+    .cart-drawer{
+      position:fixed;
+      top:0;
+      right:0;
+      width:min(420px,100vw);
+      height:100vh;
+      background:#fff;
+      z-index:100;
+      transform:translateX(100%);
+      transition:transform .25s ease;
+      box-shadow:-18px 0 40px rgba(0,0,0,0.14);
+      display:flex;
+      flex-direction:column;
+    }
+
+
+    .cart-drawer.active{
+      transform:translateX(0);
+    }
+
+
+    .cart-header{
+      padding:20px;
+      border-bottom:1px solid rgba(67,37,134,0.08);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+    }
+
+
+    .cart-header h3{
+      margin:0;
+      color:var(--purple);
+      font-size:28px;
+      font-weight:800;
+    }
+
+
+    .icon-btn{
+      border:none;
+      background:#f4edff;
+      color:var(--purple);
+      width:42px;
+      height:42px;
+      border-radius:50%;
+      cursor:pointer;
+      font-size:22px;
+      font-weight:700;
+    }
+
+
+    .cart-body{
+      flex:1;
+      overflow:auto;
+      padding:18px 18px 24px;
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      background:#fcfbff;
+    }
+
+
+    .cart-empty{
+      margin:auto 0;
+      padding:24px;
+      color:var(--muted);
+    }
+
+
+    .cart-item{
+      display:grid;
+      grid-template-columns:84px 1fr;
+      gap:14px;
+      background:#fff;
+      border-radius:18px;
+      padding:12px;
+      box-shadow:0 6px 18px rgba(67,37,134,0.08);
+    }
+
+
+    .cart-thumb{
+      border-radius:16px;
+      background:linear-gradient(180deg,#f2edff,#ddd1f1);
+      height:84px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+      padding:6px;
+    }
+
+
+    .cart-thumb img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      display:block;
+    }
+
+
+    .cart-item h4{
+      margin:0 0 4px;
+      color:var(--purple);
+      font-size:18px;
+    }
+
+
+    .cart-meta{
+      font-size:13px;
+      color:var(--muted);
+      margin-bottom:8px;
+    }
+
+
+    .qty-row{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+
+    .qty-controls{
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+
+
+    .qty-controls button{
+      margin:0;
+      width:32px;
+      height:32px;
+      padding:0;
+      border-radius:10px;
+      font-size:18px;
+    }
+
+
+    .qty-display{
+      min-width:20px;
+      text-align:center;
+      font-weight:700;
+      color:var(--purple);
+    }
+
+
+    .remove-btn{
+      background:transparent;
+      border:none;
+      color:#9e5e7c;
+      font-weight:700;
+      cursor:pointer;
+      padding:0;
+    }
+
+
+    .cart-footer{
+      padding:18px 18px 24px;
+      border-top:1px solid rgba(67,37,134,0.08);
+      background:#fff;
+    }
+
+
+    .summary-row{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      font-size:16px;
+      margin-bottom:10px;
+    }
+
+
+    .summary-row.total{
+      font-size:24px;
+      font-weight:800;
+      color:var(--purple);
+      margin:10px 0 16px;
+    }
+
+
+    .donation-note{
+      background:#f4edff;
+      color:var(--purple);
+      border-radius:16px;
+      padding:12px 14px;
+      font-size:13px;
+      line-height:1.5;
+      margin-bottom:14px;
+    }
+
+
+    .checkout-btn{
+      width:100%;
+      border:none;
+      border-radius:16px;
+      padding:15px 18px;
+      background:var(--purple);
+      color:#fff;
+      font-weight:800;
+      font-size:16px;
+      cursor:pointer;
+    }
+
+
+    .tiny-note{
+      margin-top:10px;
+      font-size:12px;
+      color:var(--muted);
+      text-align:center;
+    }
+
+
+    .toast{
+      position:fixed;
+      left:50%;
+      bottom:24px;
+      transform:translateX(-50%) translateY(20px);
+      background:var(--purple);
+      color:#fff;
+      padding:12px 18px;
+      border-radius:999px;
+      font-size:14px;
+      font-weight:700;
+      z-index:120;
+      opacity:0;
+      pointer-events:none;
+      transition:all .22s ease;
+      box-shadow:var(--shadow);
+    }
+
+
+    .toast.show{
+      opacity:1;
+      transform:translateX(-50%) translateY(0);
+    }
+
+
+    @media (max-width: 1180px){
+      .products-grid{
+        grid-template-columns:repeat(3, minmax(0,1fr));
+      }
+      .hero{
+        grid-template-columns:1fr;
+      }
+      .highlight-inner,
+      .footer-inner{
+        grid-template-columns:1fr;
+      }
+      .partners{
+        justify-self:start;
+        text-align:left;
+      }
+      .footer-card{
+        grid-template-columns:1fr;
+      }
+      .qr{
+        justify-self:start;
+      }
+    }
+
+
+    @media (max-width: 860px){
+      .products-grid{
+        grid-template-columns:repeat(2, minmax(0,1fr));
+      }
+      .reviews-grid{
+        grid-template-columns:1fr;
+      }
+      .nav{
+        align-items:flex-start;
+        flex-direction:column;
+      }
+      .nav-links{
+        justify-content:flex-start;
+      }
+      .hero-collage{
+        grid-template-columns:1fr;
+      }
+      .collage-card.tall{
+        grid-row:auto;
+        min-height:300px;
+      }
+      .footer-logo-wrap{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+    }
+
+
+    @media (max-width: 560px){
+      .products-grid{
+        grid-template-columns:1fr;
+      }
+      .hero,
+      .section,
+      .footer-inner,
+      .nav{
+        padding-left:16px;
+        padding-right:16px;
+      }
+      .highlight-band{
+        padding-left:16px;
+        padding-right:16px;
+      }
+      .section-title{
+        font-size:34px;
+      }
+      .hero-copy h2{
+        font-size:42px;
+      }
+      .actions{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+
+  <div class="topbar">
+    <div class="nav">
+      <div class="brand">
+        <div class="brand-logo"></div>
+        <div class="brand-text">
+          <h1>Play Like Her</h1>
+          <p>Official merch store</p>
+        </div>
+      </div>
+
+
+      <div class="nav-links">
+        <a href="#shop">Shop</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#support">Partners</a>
+        <a href="#contact">Contact</a>
+        <button class="cart-button" id="openCartBtn">Cart (<span id="cartCount">0</span>)</button>
+      </div>
+    </div>
+  </div>
+
+
+  <section class="hero">
+    <div class="hero-copy">
+      <h2>Our Merch Range</h2>
+      <p>
+        Our <em>Play Like Her</em> merchandise is designed to promote confidence, comfort and participation in women’s sport.
+        Each item represents the strength and determination of female athletes, and by wearing our merch, you are supporting the movement for greater opportunities, recognition and respect in sport.
+      </p>
+      <p>
+        Every purchase makes a difference. <strong>100% of profits</strong> support our partner organisations:
+        Women’s Sport Australia, Play Like a Girl and the Australian Sports Commission.
+      </p>
+
+
+      <div class="hero-badges">
+        <div class="badge">100% of profits donated</div>
+        <div class="badge">Aussie-inspired campaign</div>
+        <div class="badge">Purple merch collection</div>
+        <div class="badge">Built for young athletes</div>
+      </div>
+
+
+      <div class="hero-actions">
+        <a href="#shop" class="btn btn-primary">Shop Now</a>
+        <button class="btn btn-secondary" id="heroCartBtn">View Cart</button>
+      </div>
+    </div>
+
+
+    <div class="hero-collage">
+      <div class="collage-card tall">
+        <img src="merchphoto1.png" alt="Play Like Her shirt photo">
+        <div class="label">T-shirt collection</div>
+      </div>
+
+
+      <div class="collage-card">
+        <img src="merchphoto3.png" alt="Play Like Her duffel bag photo">
+        <div class="label">Support women athletes</div>
+      </div>
+
+
+      <div class="collage-card">
+        <img src="merchphoto2.png" alt="Play Like Her bottle photo">
+        <div class="label">Full merch range</div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section" id="shop">
+    <h2 class="section-title">Shop the collection</h2>
+    <p class="section-sub">
+      Choose your favourite pieces from the <strong>Play Like Her</strong> collection. Select colours, pick your size where needed,
+      add items to your cart, and preview your order in the side cart.
+    </p>
+
+
+    <div class="products-grid" id="productsGrid"></div>
+  </section>
+
+
+  <div class="highlight-band" id="support">
+    <div class="highlight-inner">
+      <h3><strong>100%</strong> of profits support our partner organisations</h3>
+      <div class="partners">
+        <p>Every purchase helps support the future of women in sport.</p>
+        <div class="partner-list">
+          <span>Women’s Sport Australia</span>
+          <span>Play Like a Girl</span>
+          <span>Australian Sports Commission</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <section class="section" id="reviews">
+    <h2 class="section-title">What supporters are saying</h2>
+    <p class="section-sub">
+      Feedback from students, athletes and supporters of the <strong>Play Like Her</strong> campaign.
+    </p>
+
+
+    <div class="reviews-grid">
+      <div class="review">
+        <div class="stars">★★★★★</div>
+        <p>“The water bottle looks so good and actually matches the whole campaign. It feels like real merch, not just a school project.”</p>
+        <strong>— Ava, Year 10 student</strong>
+      </div>
+      <div class="review">
+        <div class="stars">★★★★★</div>
+        <p>“I love that buying something from the range supports women’s sport as well. The shirt design is my favourite.”</p>
+        <strong>— Mia, junior athlete</strong>
+      </div>
+      <div class="review">
+        <div class="stars">★★★★★</div>
+        <p>“The duffel bag is probably the strongest piece in the range. It looks professional and suits the branding really well.”</p>
+        <strong>— Chloe, campaign supporter</strong>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="footer-contact" id="contact">
+    <div class="footer-inner">
+      <div class="footer-logo-wrap">
+        <div class="footer-range">
+          <img src="merchrange.png" alt="Play Like Her full merch range">
+        </div>
+      </div>
+
+
+      <div class="footer-card">
+        <div>
+          <h3>Ways to contact us</h3>
+          <p><strong>Email:</strong> playlikeher2026@gmail.com</p>
+          <p><strong>Instagram:</strong> play.like.her</p>
+          <p><strong>Phone:</strong> 0467 8290 6700</p>
+        </div>
+        <div class="qr">
+          <div class="insta"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <div class="cart-overlay" id="cartOverlay"></div>
+
+
+  <aside class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+      <h3>Your cart</h3>
+      <button class="icon-btn" id="closeCartBtn">×</button>
+    </div>
+
+
+    <div class="cart-body" id="cartBody"></div>
+
+
+    <div class="cart-footer">
+      <div class="donation-note">
+        100% of profits from every order support Women’s Sport Australia, Play Like a Girl and the Australian Sports Commission.
+      </div>
+
+
+      <div style="margin-bottom:12px;">
+        <input id="discountInput" placeholder="Discount code" style="
+          width:100%;
+          padding:10px 12px;
+          border-radius:12px;
+          border:2px solid rgba(67,37,134,0.14);
+          background:#f9f6ff;
+          color:#432586;
+          font-size:14px;
+          outline:none;
+          margin-bottom:8px;
+        ">
+
+
+        <button onclick="applyDiscount()" style="
+          width:100%;
+          border:none;
+          border-radius:12px;
+          padding:10px 14px;
+          background:#f4edff;
+          color:#432586;
+          border:2px solid rgba(67,37,134,0.18);
+          font-weight:700;
+          font-size:14px;
+          cursor:pointer;
+        ">
+          Apply Code
+        </button>
+
+
+        <div id="discountMessage" style="
+          margin-top:6px;
+          font-size:12px;
+          color:#432586;
+          min-height:16px;
+        "></div>
+      </div>
+
+
+      <div class="summary-row">
+        <span>Items</span>
+        <span id="cartItemsCount">0</span>
+      </div>
+
+
+      <div class="summary-row">
+        <span>Subtotal</span>
+        <span id="cartOriginalSubtotal" style="text-decoration:line-through; opacity:.65;">$0.00</span>
+      </div>
+
+
+      <div class="summary-row" id="discountRow" style="display:none;">
+        <span>Discount (15%)</span>
+        <span id="cartDiscount" style="color:#9e5e7c;">-$0.00</span>
+      </div>
+
+
+      <div class="summary-row total">
+        <span>Total</span>
+        <span id="cartSubtotal">$0.00</span>
+      </div>
+
+
+      <button class="checkout-btn" id="checkoutBtn">Checkout</button>
+      <div class="tiny-note">Demo store only — no real payment is processed.</div>
+    </div>
+  </aside>
+
+
+  <div class="toast" id="toast"></div>
+
+
+  <script>
+    const productImages = {
+      shirt: {
+        "Light Purple": "tshirt-lightpurple.png",
+        "Dark Purple": "tshirt-darkpurple.png",
+        "Yellow": "tshirt-yellow.png"
+      },
+      bottle: {
+        "Light Purple": "bottle-lightpurple.png",
+        "Dark Purple": "bottle-darkpurple.png",
+        "Yellow": "bottle-yellow.png"
+      },
+      bag: {
+        "Light Purple": "bag-lightpurple.png",
+        "Dark Purple": "bag-darkpurple.png"
+      },
+      cap: {
+        "Light Purple": "cap-lightpurple.png",
+        "Dark Purple": "cap-darkpurple.png"
+      },
+      towel: {
+        "Light Purple": "towel-lightpurple.png",
+        "Dark Purple": "towel-darkpurple.png"
+      }
+    };
+
+
+    const products = [
+      {
+        id: "shirt",
+        name: "Play Like Her T-Shirt",
+        price: 20,
+        description: "Soft everyday tee featuring the Play Like Her logo with sponsor detail near the hem.",
+        colors: ["Light Purple", "Dark Purple", "Yellow"],
+        sizes: ["XS", "S", "M", "L", "XL"],
+        imageType: "shirt"
+      },
+      {
+        id: "bottle",
+        name: "Play Like Her Water Bottle",
+        price: 12.5,
+        description: "Stainless steel bottle in three customisable colours, designed to keep athletes hydrated.",
+        colors: ["Light Purple", "Dark Purple", "Yellow"],
+        sizes: [],
+        imageType: "bottle"
+      },
+      {
+        id: "bag",
+        name: "Sport Duffel Bag",
+        price: 25,
+        description: "Spacious duffel bag designed to fit uniforms, water bottles and all your training gear.",
+        colors: ["Light Purple", "Dark Purple"],
+        sizes: [],
+        imageType: "bag"
+      },
+      {
+        id: "cap",
+        name: "Play Like Her Cap",
+        price: 10,
+        description: "Classic curved cap in campaign colours, designed to complete the merch set.",
+        colors: ["Light Purple", "Dark Purple"],
+        sizes: [],
+        imageType: "cap"
+      },
+      {
+        id: "towel",
+        name: "Play Like Her Towel",
+        price: 10,
+        description: "Training towel featuring the campaign branding in matching collection colours.",
+        colors: ["Light Purple", "Dark Purple"],
+        sizes: [],
+        imageType: "towel"
+      }
+    ];
+
+
+    const cart = [];
+    let discount = 0;
+
+
+    const productsGrid = document.getElementById("productsGrid");
+    const cartCount = document.getElementById("cartCount");
+    const cartItemsCount = document.getElementById("cartItemsCount");
+    const cartSubtotal = document.getElementById("cartSubtotal");
+    const cartOriginalSubtotal = document.getElementById("cartOriginalSubtotal");
+    const cartDiscount = document.getElementById("cartDiscount");
+    const discountRow = document.getElementById("discountRow");
+    const cartBody = document.getElementById("cartBody");
+    const cartDrawer = document.getElementById("cartDrawer");
+    const cartOverlay = document.getElementById("cartOverlay");
+    const openCartBtn = document.getElementById("openCartBtn");
+    const heroCartBtn = document.getElementById("heroCartBtn");
+    const closeCartBtn = document.getElementById("closeCartBtn");
+    const checkoutBtn = document.getElementById("checkoutBtn");
+    const toast = document.getElementById("toast");
+
+
+    function money(n){
+      return `$${n.toFixed(2)}`;
+    }
+
+
+    function getProductImage(type, color){
+      if(productImages[type] && productImages[type][color]){
+        return productImages[type][color];
+      }
+      return "";
+    }
+
+
+    function createProductArtwork(type, color){
+      const image = getProductImage(type, color);
+      if(image){
+        return `<img src="${image}" alt="${type} ${color}">`;
+      }
+      return `<div style="color:#432586;font-weight:700;text-align:center;">Image not found</div>`;
+    }
+
+
+    function renderProducts(){
+      productsGrid.innerHTML = "";
+
+
+      products.forEach(product => {
+        const card = document.createElement("div");
+        card.className = "product-card";
+
+
+        const defaultColor = product.colors[0];
+        const defaultSize = product.sizes.length ? product.sizes[2] || product.sizes[0] : "";
+
+
+        card.innerHTML = `
+          <div class="product-image" id="image-${product.id}">
+            ${createProductArtwork(product.imageType, defaultColor)}
+          </div>
+
+
+          <div class="product-info">
+            <h3>${product.name}</h3>
+            <div class="price">${money(product.price)}</div>
+            <p>${product.description}</p>
+          </div>
+
+
+          <div class="field">
+            <label for="color-${product.id}">Colour</label>
+            <select id="color-${product.id}">
+              ${product.colors.map(color => `<option value="${color}">${color}</option>`).join("")}
+            </select>
+          </div>
+
+
+          ${
+            product.sizes.length
+            ? `
+              <div class="field">
+                <label for="size-${product.id}">Size</label>
+                <select id="size-${product.id}">
+                  ${product.sizes.map(size => `<option value="${size}" ${size === defaultSize ? "selected" : ""}>${size}</option>`).join("")}
+                </select>
+              </div>
+            `
+            : ""
+          }
+
+
+          <div class="actions">
+            <button class="action-btn cart" data-id="${product.id}">Add to Cart</button>
+            <button class="action-btn buy" data-buy-id="${product.id}">Buy Now</button>
+          </div>
+        `;
+
+
+        productsGrid.appendChild(card);
+
+
+        const colorSelect = card.querySelector(`#color-${product.id}`);
+        const sizeSelect = product.sizes.length ? card.querySelector(`#size-${product.id}`) : null;
+        const imageWrap = card.querySelector(`#image-${product.id}`);
+
+
+        colorSelect.addEventListener("change", () => {
+          imageWrap.innerHTML = createProductArtwork(product.imageType, colorSelect.value);
+        });
+
+
+        card.querySelector(`[data-id="${product.id}"]`).addEventListener("click", () => {
+          addToCart(product.id, colorSelect.value, sizeSelect ? sizeSelect.value : "");
+        });
+
+
+        card.querySelector(`[data-buy-id="${product.id}"]`).addEventListener("click", () => {
+          addToCart(product.id, colorSelect.value, sizeSelect ? sizeSelect.value : "");
+          openCart();
+        });
+      });
+    }
+
+
+    function addToCart(productId, color, size){
+      const product = products.find(p => p.id === productId);
+      const existing = cart.find(item =>
+        item.id === productId &&
+        item.color === color &&
+        item.size === size
+      );
+
+
+      if(existing){
+        existing.qty += 1;
+      } else {
+        cart.push({
+          id: product.id,
+          name: product.name,
+          price: product.price,
+          color,
+          size,
+          qty: 1,
+          imageType: product.imageType
+        });
+      }
+
+
+      showToast(`${product.name} added to cart`);
+      updateCart();
+    }
+
+
+    function changeQty(index, delta){
+      if(!cart[index]) return;
+      cart[index].qty += delta;
+      if(cart[index].qty <= 0){
+        cart.splice(index,1);
+      }
+      updateCart();
+    }
+
+
+    function removeItem(index){
+      if(!cart[index]) return;
+      cart.splice(index,1);
+      updateCart();
+    }
+
+
+    function applyDiscount(){
+      const discountInput = document.getElementById("discountInput");
+      const discountMessage = document.getElementById("discountMessage");
+      const code = discountInput.value.trim().toUpperCase();
+
+
+      if(code === "PLH2026"){
+        discount = 0.15;
+        discountMessage.textContent = "15% discount applied";
+      } else {
+        discount = 0;
+        discountMessage.textContent = "Invalid code";
+      }
+
+
+      updateCart();
+    }
+
+
+    function updateCart(){
+      const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+      const originalSubtotal = cart.reduce((sum, item) => sum + item.qty * item.price, 0);
+      const discountAmount = originalSubtotal * discount;
+      const finalSubtotal = originalSubtotal - discountAmount;
+
+
+      cartCount.textContent = totalItems;
+      cartItemsCount.textContent = totalItems;
+      cartOriginalSubtotal.textContent = money(originalSubtotal);
+      cartDiscount.textContent = `-${money(discountAmount)}`;
+      cartSubtotal.textContent = money(finalSubtotal);
+
+
+      if(discountAmount > 0){
+        discountRow.style.display = "flex";
+      } else {
+        discountRow.style.display = "none";
+      }
+
+
+      if(cart.length === 0){
+        cartBody.innerHTML = `
+          <div class="cart-empty">
+            <p>Your cart is empty.</p>
+            <p>Add some Play Like Her merch to get started.</p>
+          </div>
+        `;
+        cartOriginalSubtotal.textContent = money(0);
+        cartDiscount.textContent = `-${money(0)}`;
+        cartSubtotal.textContent = money(0);
+        discountRow.style.display = "none";
+        return;
+      }
+
+
+      cartBody.innerHTML = cart.map((item, index) => `
+        <div class="cart-item">
+          <div class="cart-thumb">
+            ${createProductArtwork(item.imageType, item.color)}
+          </div>
+          <div>
+            <h4>${item.name}</h4>
+            <div class="cart-meta">
+              ${item.color}${item.size ? ` · Size ${item.size}` : ""}
+            </div>
+            <div class="qty-row">
+              <div class="qty-controls">
+                <button class="icon-btn" onclick="changeQty(${index}, -1)">−</button>
+                <div class="qty-display">${item.qty}</div>
+                <button class="icon-btn" onclick="changeQty(${index}, 1)">+</button>
+              </div>
+              <strong style="color:#432586;">${money(item.price * item.qty)}</strong>
+            </div>
+            <div style="margin-top:8px;">
+              <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
+            </div>
+          </div>
+        </div>
+      `).join("");
+    }
+
+
+    function openCart(){
+      cartDrawer.classList.add("active");
+      cartOverlay.classList.add("active");
+    }
+
+
+    function closeCart(){
+      cartDrawer.classList.remove("active");
+      cartOverlay.classList.remove("active");
+    }
+
+
+    let toastTimer;
+    function showToast(message){
+      toast.textContent = message;
+      toast.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.classList.remove("show");
+      }, 1800);
+    }
+
+
+    openCartBtn.addEventListener("click", openCart);
+    heroCartBtn.addEventListener("click", openCart);
+    closeCartBtn.addEventListener("click", closeCart);
+    cartOverlay.addEventListener("click", closeCart);
+
+
+    checkoutBtn.addEventListener("click", () => {
+      if(cart.length === 0){
+        showToast("Your cart is empty");
+        return;
+      }
+      showToast("Demo checkout only");
+    });
+
+
+    renderProducts();
+    updateCart();
+  </script>
+</body>
+</html>
